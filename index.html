@@ -4,11 +4,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opencv JS</title>
     <script async src="js/opencv.js" onload="openCvReady();"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="js/utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
 </head>
 <body>
-    <video id="cam_input" height="480" width="640"></video>
-    <canvas id="canvasOutput"></canvas>
+    <div id="banner">
+        <div id="project-name">
+            <p>Face Mask Detection</p>
+        </div>
+        <div id="team-name">
+            <p>from Tim5TapiBertiga</p>
+        </div>
+        <div id="mask-img">
+            <!-- Video From Camera using JS -->
+            <video id="cam_input" height="240" width="320"></video>
+            <canvas id="canvasOutput"></canvas>
+        </div>
+    </div>
 </body>
 <script src="script.js" type="text/JavaScript">
 </script>
