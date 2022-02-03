@@ -1,14 +1,16 @@
 let model = tf.loadLayersModel('/jsmodel/model.json');
 let video = document.getElementById("cam_input"); // video is the id of video tag
-function cameraStart(){
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-    .then(function(stream) {
+
+function cameraStart() {
+    navigator.mediaDevices
+        .getUserMedia(configList[idConfig])
+        .then(function(stream) {
+        // track = stream.getTracks()[0];
         video.srcObject = stream;
         video.play();
-        console.log("activated");
     })
-    .catch(function(err) {
-        console.log("An error occurred! " + err);
+    .catch(function(error) {
+        console.error("Oops. Something is broken.", error);
     });
 }
 
@@ -83,4 +85,21 @@ function openCvReady() {
   // schedule first one.
     setTimeout(processVideo, 0);
     };
+}
+// Set constraints for the video stream
+const constraints0 = { video: { facingMode: "user" }, audio: false };
+const constraints1 = { video: { facingMode: "environment" }, audio: false };
+const configList = [constraints0, constraints1];
+var idConfig = 0;
+const changeCamBtn = document.querySelector("#change-cam");
+if(!!changeCamBtn){
+    changeCamBtn.addEventListener('click', function(){
+        idConfig++;
+        idConfig %= 2;
+        alert("change camera");
+        cameraStart();
+
+        // shootFirstFrameHandler();
+
+    });
 }
